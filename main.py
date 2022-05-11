@@ -3,7 +3,9 @@ import pandas as pd
 import numpy as np
 
 '''
-# Hello World
+# Real-estate investment analysis
+Enter information about price, size, and rent in the area of possible property.
+Calculates the expected rent income for a year.
 '''
 
 # Inputs:
