@@ -51,8 +51,9 @@ st.header("Loan")
 col1, col2, col3 = st.columns((1, 2, 1))
 stake = col2.slider('Personal stake (%)', 20, 40, 20, format="%.0f") / 100
 personal_investment = price * stake
+loan = price - personal_investment
 col1.metric(label="Stake", value=f'{personal_investment :,.0f}€', delta=f"{stake / 100:.0%}")
-col3.metric(label="Loan", value=f'{price - personal_investment :,.0f}€', delta=f"{(1 - stake):.0%}")
+col3.metric(label="Loan", value=f'{loan :,.0f}€', delta=f"{(1 - stake):.0%}")
 st.progress(stake)
 
 st.header("Area")
@@ -70,11 +71,12 @@ monthly_rent = size * sqm_rent / 12
 peak_monthly_rent = monthly_rent + (monthly_rent * sqm_rent_peak)
 
 one_years_rent = off_peak_months * monthly_rent + peak_months * peak_monthly_rent
+down_payment = one_years_rent * .8
 
 col1.metric(label="Off-peak", value=f'{monthly_rent:.0f}€', delta=f"{off_peak_months} months")
 col2.metric(label="On-peak", value=f'{peak_monthly_rent:.0f}€', delta=f"{peak_months} months")
-col3.metric(label="One year", value=f'{one_years_rent:,.0f}€', delta=f"{size}")
-col4.metric(label="Down-payment", value=f'{one_years_rent * .8:,.0f}€', delta=f"-80%")
+col3.metric(label="One year", value=f'{one_years_rent:,.0f}€')
+col4.metric(label="Down-payment", value=f'{down_payment :,.0f}€', delta=f"-{down_payment / loan:.0%}")
 
 months = [month for month in range(1, 13)]
 rents = [[peak_monthly_rent if peak_start <= month <= peak_end else monthly_rent for month in months]]
