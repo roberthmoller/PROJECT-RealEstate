@@ -1,0 +1,4 @@
+watchdog
+streamlit
+pandas
+numpy
