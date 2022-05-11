@@ -87,7 +87,7 @@ repaid_perc = st.slider('Loan repaid', 0, 100, 100, format="%.0f%%", step=5) / 1
 
 down_payment = one_years_rent * down_payment_perc
 years_to_repaid_perc = int(loan * repaid_perc / down_payment)
-remaining_loan = repaid_perc * loan
+remaining_loan = loan - repaid_perc * loan
 
 col1, col2, col3 = st.columns((1, 1, 2))
 
