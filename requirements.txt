@@ -1,4 +1,7 @@
 watchdog
-streamlit
-pandas
-numpy
+streamlit~=1.9.0
+pandas~=1.4.2
+numpy~=1.22.3
+requests~=2.27.1
+beautifulsoup4~=4.11.1
+spacy_streamlit
