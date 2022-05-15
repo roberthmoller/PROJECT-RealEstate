@@ -104,18 +104,18 @@ def extract(doc: Doc, label: str, features: List, predicates: List = [], strict:
     matcher.add(label, [features])
     matches = matcher(doc, as_spans=True)
 
-    print(f"Matches: {len(matches)}")
+    # print(f"Matches: {len(matches)}")
 
     for span in matches:
         if len(predicates) == 0:
             yield span
         if strict:
             if all(predicate(span) for predicate in predicates):
-                print('tight match:\t', span, [left for left in span.lefts], [right for right in span.rights])
+                # print('tight match:\t', span, [left for left in span.lefts], [right for right in span.rights])
                 yield span
         else:
             if any(predicate(span) for predicate in predicates):
-                print('loose match:\t', span, [left for left in span.lefts], [right for right in span.rights])
+                # print('loose match:\t', span, [left for left in span.lefts], [right for right in span.rights])
                 yield span
 
 

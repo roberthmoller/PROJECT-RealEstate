@@ -11,27 +11,44 @@ from models.rent import Rent, Season
 from visualizations.expenditure import visualize_expenditure
 
 
-class Source(Enum):
-    LISTING = 'Listing'
+class Sources(Enum):
     EXAMPLE = 'Example'
+    LISTING = 'Listing'
     CUSTOM = 'Custom'
+
+    @classmethod
+    def values(cls):
+        return list([cls.EXAMPLE, cls.LISTING, cls.CUSTOM])
+
+    def __iter__(self):
+        return list(self)
+
+    def __str__(self):
+        return self.value
+
+    def __repr__(self):
+        return f'Sources("{self.value}")'
 
 
 def listing_parameters() -> Listing:
-    source = st.selectbox("Source", (Source.EXAMPLE.value, Source.LISTING.value, Source.CUSTOM.value))
-    if source == Source.LISTING.value:
+    sources = Sources.values()
+    source_index = st.selectbox("Source", range(len(sources)), format_func=lambda i: sources[i].value)
+    source = sources[source_index]
+    if source == Sources.LISTING:
         url = st.text_input("Link to property")
         if url:
             return Listing.of(url)
         else:
-            st.write("Supported domains")
-            st.json([domain for domain in Listing.SUPPORTED_DOMAINS.keys()])
+            st.subheader("Supported domains")
+            for domain in Listing.SUPPORTED_DOMAINS.keys():
+                st.markdown(f'* [{domain.split("://")[-1]}]({domain})')
             return None
-    elif source == Source.EXAMPLE.value:
-        return st.selectbox("Example property", ExampleListings.ALL, format_func=lambda x: x.location)
-    elif source == Source.CUSTOM.value:
+    elif source == Sources.EXAMPLE:
+        examples = ExampleListings.all()
+        example_index = st.selectbox("Example property", range(len(examples)), format_func=lambda index: examples[index].location)
+        return examples[example_index]
+    elif source == Sources.CUSTOM:
         raise NotImplementedError()
-    raise NotImplementedError()
 
 
 def rent_parameters(listing: Listing) -> Rent:

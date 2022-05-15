@@ -36,6 +36,7 @@ Analyse the expected rent income for a year and potential profits for a sale.
 ########################################################################################################################
 # Global state                                                                                                         #
 ########################################################################################################################
+print("# Initialise global state")
 listing: Optional[Listing]
 rent: Optional[Rent]
 expenditure: Optional[Expenditure]
@@ -44,8 +45,11 @@ loan: Optional[Loan]
 ########################################################################################################################
 # Interface                                                                                                            #
 ########################################################################################################################
+print("# Rendering Interface")
+print("* Sidebar")
+
 with st.sidebar:
-    st.header("Inputs")
+    st.header("Parameters")
     listing = parameters.listing_parameters()
 
     if listing:
@@ -54,12 +58,16 @@ with st.sidebar:
         expenditure = parameters.expenditure_parameters(listing, rent)
         loan = parameters.loan_parameters(listing)
 
+
 if not listing:
+    print("* HowTo (no listing)")
     st.subheader("How to use")
 elif listing:
+    print("* Analysis")
     st.subheader("Preview")
     preview.images(listing)
 
     st.subheader("Analysis")
     analysis.down_payment(listing, loan, rent)
     # analysis.profit()
+print("Finished rendering")

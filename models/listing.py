@@ -1,4 +1,5 @@
 import re
+from enum import Enum
 from typing import List
 
 import requests
@@ -84,9 +85,17 @@ class ExampleListing(Listing, excluded=True):
         self.size = size
         self.images = images
 
+    def __repr__(self) -> str:
+        return f'ExampleListing(price={self.price}, size={self.size}, currency="{self.currency}", rooms={self.rooms}, bedrooms={self.bedrooms}, location="{self.location}", images={self.images})'
+
 
 class ExampleListings:
     MARS = ExampleListing(185000, 29, "€", 2, 1, "Mars", [StockImage.MARS])
     VENUS = ExampleListing(225000, 35, "€", 4, 2, "Venus", [StockImage.VENUS])
 
-    ALL = [MARS, VENUS]
+    @classmethod
+    def all(cls):
+        return list([cls.MARS, cls.VENUS])
+
+
+
