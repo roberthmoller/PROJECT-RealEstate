@@ -1,7 +1,7 @@
 pip~=22.1
 watchdog~=2.1.8
 streamlit~=1.9.0
-numpy~=1.22.3
+numpy~=1.21.6
 requests~=2.27.1
 beautifulsoup4~=4.11.1
 attrs~=21.4.0
