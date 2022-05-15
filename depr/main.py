@@ -1,5 +1,5 @@
 import streamlit as st
-import pandas as pd
+# import pandas as pd
 import numpy as np
 
 
@@ -86,8 +86,8 @@ col3.metric(label="One year", value=f'{one_years_rent:,.0f}€')
 
 months = [month for month in range(1, 13)]
 rents = [[peak_monthly_rent if peak_start <= month <= peak_end else monthly_rent for month in months]]
-year_in_rent = pd.DataFrame(rents, columns=months)
-st.bar_chart(year_in_rent.transpose())
+# year_in_rent = pd.DataFrame(rents, columns=months)
+# st.bar_chart(year_in_rent.transpose())
 
 st.header("Down-payment")
 col1, col2 = st.columns(2)
