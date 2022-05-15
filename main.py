@@ -66,8 +66,8 @@ elif listing:
     print("* Analysis")
     st.subheader("Preview")
     preview.images(listing)
-
     st.subheader("Analysis")
     analysis.down_payment(listing, loan, rent)
     # analysis.profit()
+
 print("Finished rendering")

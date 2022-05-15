@@ -1,13 +1,13 @@
 pip~=22.1
 watchdog~=2.1.8
 streamlit~=1.9.0
-numpy~=1.21.6
+numpy~=1.22.3
 requests~=2.27.1
 beautifulsoup4~=4.11.1
-opencv-python~=4.5.5.64
 attrs~=21.4.0
 matplotlib~=3.5.2
 preshed~=3.0.6
 thinc~=8.0.15
 spacy~=3.3.0
 cymem~=2.0.6
+Pillow~=9.1.0
